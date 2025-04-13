@@ -1,0 +1,36 @@
+name: PHP 8.3.7 CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Set up PHP 8.3.7
+    - name: Set up PHP 8.3.7
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3.7'
+
+    # Install dependencies
+    - name: Install Composer
+      run: curl -sS https://getcomposer.org/installer | php
+
+    - name: Install dependencies
+      run: |
+        php composer.phar install --no-interaction --prefer-dist --optimize-autoloader
+
+    # Run tests with PHPUnit (Optional)
+    - name: Run tests
+      run: |
+        ./vendor/bin/phpunit --configuration phpunit.xml
