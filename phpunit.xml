@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php"
+         colors="true"
+         stopOnFailure="false">
+
+    <!-- Tentukan direktori pengujian -->
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Pengaturan untuk laporan -->
+    <logging>
+        <log type="coverage-html" target="build/coverage-report" />
+    </logging>
+
+    <!-- Pengaturan lainnya -->
+    <php>
+        <ini name="memory_limit" value="-1" />
+    </php>
+
+</phpunit>
